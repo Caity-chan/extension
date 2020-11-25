@@ -11,9 +11,30 @@ const cbl = (path, value) => {
   blacklist = b.split("\n");
   return blacklist.includes(value);
 }
+
+const setCommands = (client, path) => {
+
+    const commandFolders = fs.readdirSync(path);
+
+    let commandlist = ['']
+    for (const folder of commandFolders) {
+    const commandFiles = fs.readdirSync(`${path}/${folder}`).filter(file => file.endsWith('.js'));
+
+
+    for (const file of commandFiles) {
+        const commander = require(`${path}/${folder}/${file}`);
+        client.commands.set(commander.name, commander);
+        commandlist.push(commander.name);
+    }
+}
+
+return commandlist;
+}
+
 module.exports = {
   mold,
-  cbl
+  cbl,
+  setCommands
 }
   
 
