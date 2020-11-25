@@ -1,8 +1,8 @@
 //const { cbl } = require('./blacklist.js')
 
 module.exports = {
-  name: "command",
-  description: "command api",
+  //name: "command",
+  //description: "command api",
   mold(message, prefix) {
     args = message.content.slice(prefix.length).trim().split(/ +/);
     command = args.shift().toLowerCase();
@@ -13,8 +13,8 @@ module.exports = {
 
 
 module.exports = {
-  name: "blacklist",
-  description: "blacklist api",
+  //name: "blacklist",
+  //description: "blacklist api",
   cbl(path, value) {
     const b = fs.readFileSync(path, 'utf-8');
     const blacklist = b.split("\n");
