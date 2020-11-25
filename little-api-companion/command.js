@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const mold = (message, prefix) => {
   args = message.content.slice(prefix.length).trim().split(/ +/);
   command = args.shift().toLowerCase();
