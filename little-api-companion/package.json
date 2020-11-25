@@ -1,0 +1,19 @@
+{
+  "name": "little-api-companion",
+  "version": "1.0.0",
+  "description": "api companion for discord.js",
+  "main": "command.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Caity-chan/extension.git"
+  },
+  "author": "Caity-chan/Caitlin-chan#4670",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Caity-chan/extension/issues"
+  },
+  "homepage": "https://github.com/Caity-chan/extension#readme"
+}
