@@ -4,8 +4,7 @@ const mold = (message, prefix) => {
   molded = { "args" : args,  "command" : command };
   return molded;
 }
-const checkbl = (path, value) => {
-  b = fs.readFileSync(path, 'utf-8');
+const checkbl = (b, value) => {
   blacklist = b.split("\n");
   console.log(blacklist.includes(value));
 }
