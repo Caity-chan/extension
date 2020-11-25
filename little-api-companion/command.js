@@ -4,14 +4,14 @@ const mold = (message, prefix) => {
   molded = { "args" : args,  "command" : command };
   return molded;
 }
-const cbl = (path, value) => {
+const checkbl = (path, value) => {
   b = fs.readFileSync(path, 'utf-8');
   blacklist = b.split("\n");
   console.log(blacklist.includes(value));
 }
 module.exports = {
   mold,
-  cbl
+  checkbl
 }
   
 
