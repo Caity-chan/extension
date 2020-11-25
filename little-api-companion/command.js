@@ -1,4 +1,5 @@
-require('./blacklist.js')
+const { cbl } = require('./blacklist.js')
+
 module.exports = {
   name: "command",
   description: "command api",
