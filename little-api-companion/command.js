@@ -9,7 +9,7 @@ const mold = (message, prefix) => {
 const checkbl = (path, value) => {
   b = fs.readFileSync(path, 'utf-8');
   blacklist = b.split("\n");
-  console.log(blacklist.includes(value));
+  return blacklist.includes(value);
 }
 module.exports = {
   mold,
