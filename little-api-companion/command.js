@@ -31,10 +31,30 @@ const cmdInit = (client, path) => {
     return commandlist;
 }
 
+const evInit = (client, path) => {
+    const eventFolders = fs.readdirSync(path);
+    for (const eventFolder of eventFolders) {
+        const eventFiles = fs.readdirSync(`${path}/${eventFolder}/`).filter(file => file.endsWith('.js'));
+        for (const file of eventFiles) {
+            const eventer = require(`${process.cwd()}/${path}/${eventFolder}/${file}`);
+            client.events.set(eventer.name, eventer);
+        }
+        
+        
+    }
+    client.events.forEach(function(index) {
+        client.on(index.name, (event) => {
+            if (index.name != "message") console.log(index.name, event);
+            client.events.get(index.name).eventexec(client, event);
+        });
+    })
+}
+
 module.exports = {
   mold,
   cbl,
-  cmdInit
+  cmdInit,
+  evInit
 }
   
 
