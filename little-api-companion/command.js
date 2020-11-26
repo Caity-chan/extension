@@ -34,7 +34,7 @@ const cmdInit = (client, path) => {
 module.exports = {
   mold,
   cbl,
-  setCommands
+  cmdInit
 }
   
 
