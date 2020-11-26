@@ -12,23 +12,23 @@ const cbl = (path, value) => {
   return blacklist.includes(value);
 }
 
-const setCommands = (client, path) => {
+const cmdInit = (client, path) => {
 
     const commandFolders = fs.readdirSync(path);
 
     let commandlist = ['']
     for (const folder of commandFolders) {
-    const commandFiles = fs.readdirSync(`${path}/${folder}`).filter(file => file.endsWith('.js'));
+        const commandFiles = fs.readdirSync(`${path}/${folder}`).filter(file => file.endsWith('.js'));
 
 
-    for (const file of commandFiles) {
-        const commander = require(`${path}/${folder}/${file}`);
-        client.commands.set(commander.name, commander);
-        commandlist.push(commander.name);
+        for (const file of commandFiles) {
+            const commander = require(`${process.cwd()}/${path}/${folder}/${file}`);
+            client.commands.set(commander.name, commander);
+            commandlist.push(commander.name);
+        }
     }
-}
 
-return commandlist;
+    return commandlist;
 }
 
 module.exports = {
