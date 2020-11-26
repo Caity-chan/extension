@@ -49,12 +49,16 @@ const evInit = (client, path) => {
         });
     })
 }
-
+const execmd = (command, message, args, client) => {
+    let cmd = client.commands.get(command)
+    if (cmd) cmd.execute(message, args, client);
+}
 module.exports = {
   mold,
   cbl,
   cmdInit,
-  evInit
+  evInit,
+  execmd
 }
   
 
