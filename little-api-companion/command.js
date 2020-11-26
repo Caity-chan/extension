@@ -1,3 +1,4 @@
+const Discord = require('discord.js');
 const fs = require('fs');
 
 const mold = (message, prefix) => {
@@ -13,7 +14,8 @@ const cbl = (path, value) => {
 }
 
 const cmdInit = (client, path) => {
-
+    
+    client.commands = new Discord.Collection();
     const commandFolders = fs.readdirSync(path);
 
     let commandlist = ['']
@@ -32,6 +34,8 @@ const cmdInit = (client, path) => {
 }
 
 const evInit = (client, path) => {
+    
+    client.events = new Discord.Collection();
     const eventFolders = fs.readdirSync(path);
     for (const eventFolder of eventFolders) {
         const eventFiles = fs.readdirSync(`${path}/${eventFolder}/`).filter(file => file.endsWith('.js'));
