@@ -21,10 +21,8 @@ const cmdInit = (client, path) => {
     let commandlist = ['']
     for (const folder of commandFolders) {
         const commandFiles = fs.readdirSync(`${path}/${folder}`).filter(file => file.endsWith('.js'));
-
-
         for (const file of commandFiles) {
-            require(`${process.cwd()}/${path}/${folder}/${file}`).then(commander=>{client.commands.set(commander.name, commander); commandlist.push(commander.name); };
+            require(`${process.cwd()}/${path}/${folder}/${file}`).then(commander=>{client.commands.set(commander.name, commander); commandlist.push(commander.name); });
         }
     }
 
