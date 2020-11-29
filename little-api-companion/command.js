@@ -77,7 +77,6 @@ const helpCmd = (message, args, client) => {
     helpEmbed = new Discord.MessageEmbed().setColor('#43f8b7').addFields(
         {name: "Commands", value: "This is the command list for the Quillon Companion bot!"}
     )
-    console.log("args: " + args);
     if(!args.join(" ")) {
         for (const category of client.categories) {
             helpEmbed.addFields(
