@@ -75,7 +75,7 @@ const execmd = (command, message, args, client) => {
 }
 const helpCmd = (message, args, client) => {
     helpEmbed = new Discord.MessageEmbed().setColor('#43f8b7').addFields(
-        {name: "Commands", value: "This is the command list for the Quillon Companion bot!"}
+        {name: "Commands", value: "This is the command list for the " + client.user.username + " bot!"}
     )
     if(!args.join(" ")) {
         for (const category of client.categories) {
