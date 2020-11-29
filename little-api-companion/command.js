@@ -27,7 +27,7 @@ const cmdInit = (client, path) => {
             const commander = require(`${process.cwd()}/${path}/${folder}/${file}`);
             client.commands.set(commander.name, commander);
             for (const aly of commander.aliases) {
-                client.commands.set(aly, commander.name);
+                client.commands.set(aly, commander);
             }
             commandlist.push(commander.name);
         }
