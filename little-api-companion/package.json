@@ -1,6 +1,6 @@
 {
   "name": "little-api-companion",
-  "version": "2.9.5",
+  "version": "3.0.0",
   "description": "api companion for discord.js",
   "main": "command.js",
   "scripts": {

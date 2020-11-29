@@ -4,7 +4,7 @@ const fs = require('fs');
 const mold = (message, prefix) => {
   args = message.content.slice(prefix.length).trim().split(/ +/);
   command = args.shift().toLowerCase();
-  client.prefix = prefix;
+  //client.prefix = prefix;
   molded = { "args" : args,  "command" : command };
   return molded;
 }
@@ -83,7 +83,7 @@ const helpCmd = (message, args, client) => {
             helpEmbed.addFields(
                 {
                     name: category,
-                    value: client.prefix + "help " + category
+                    value: "help " + category
                 }
             )
         }
