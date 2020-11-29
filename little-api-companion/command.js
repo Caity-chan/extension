@@ -16,6 +16,7 @@ const cbl = (path, value) => {
 const cmdInit = (client, path) => {
     
     client.commands = new Discord.Collection();
+    client.aliases = new Discord.Collection();
     const commandFolders = fs.readdirSync(path);
 
     let commandlist = ['']
@@ -28,7 +29,7 @@ const cmdInit = (client, path) => {
             client.commands.set(commander.name, commander);
             if (commander.aliases) {
                 for (const aly of commander.aliases) {
-                    client.commands.set(aly, commander);
+                    client.aliases.set(aly, commander);
                 }
             }
             
