@@ -75,10 +75,11 @@ const execmd = (command, message, args, client) => {
     if (cmd) return cmd.execute(message, args, client);
 }
 const helpCmd = (message, args, client) => {
-    helpEmbed = new Discord.MessageEmbed().setColor('#43f8b7').addFields(
-        {name: "Commands", value: "This is the command list for the " + client.user.username + " bot!"}
-    )
+        
     if(!args.join(" ")) {
+        helpEmbed = new Discord.MessageEmbed().setColor('#43f8b7').addFields(
+            {name: "Commands", value: "This is the category command list for the " + client.user.username + " bot!"}
+        )
         for (const category of client.categories) {
             helpEmbed.addFields(
                 {
@@ -89,6 +90,9 @@ const helpCmd = (message, args, client) => {
         }
     } else {
         category = args.join(" ");
+        helpEmbed = new Discord.MessageEmbed().setColor('#43f8b7').addFields(
+            {name: "Commands", value: "This is the " + category + " command list for the " + client.user.username + " bot!"}
+        )
         client.catcmds[category].forEach(command=>{
             helpEmbed.addFields(
                 {
