@@ -73,12 +73,43 @@ const execmd = (command, message, args, client) => {
     else cmd = client.aliases.get(command)
     if (cmd) return cmd.execute(message, args, client);
 }
+const helpCmd = (message, args, client) => {
+    helpEmbed = new Discord.MessageEmbed().setColor('#43f8b7').addFields(
+        {name: "Commands", value: "This is the command list for the Quillon Companion bot!"}
+    )
+    console.log("args: " + args);
+    if(!args.join(" ")) {
+        for (const category of client.categories) {
+            helpEmbed.addFields(
+                {
+                    name: category,
+                    value: "/help " + category
+                }
+            )
+        }
+    } else {
+        category = args.join(" ");
+        client.catcmds[category].forEach(command=>{
+            helpEmbed.addFields(
+                {
+                    name: command.name,
+                    value: "usage: " + command.usage
+                }
+            )
+        })
+    }
+        
+    message.channel.send(
+        helpEmbed
+    );
+}
 module.exports = {
   mold,
   cbl,
   cmdInit,
   evInit,
-  execmd
+  execmd,
+  helpCmd
 }
   
 
