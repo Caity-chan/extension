@@ -16,6 +16,7 @@ const cbl = (path, value) => {
 const cmdInit = (client, path) => {
     
     client.commands = new Discord.Collection();
+    client.aliases = new Discord.Collection();
     const commandFolders = fs.readdirSync(path);
 
     let commandlist = ['']
@@ -26,6 +27,9 @@ const cmdInit = (client, path) => {
         for (const file of commandFiles) {
             const commander = require(`${process.cwd()}/${path}/${folder}/${file}`);
             client.commands.set(commander.name, commander);
+            for (const aly of commander.aliases) {
+                client.aliases.set(aly, commander.name);
+            }
             commandlist.push(commander.name);
         }
     }
@@ -55,7 +59,9 @@ const evInit = (client, path) => {
 }
 const execmd = (command, message, args, client) => {
     let cmd = client.commands.get(command)
-    if (cmd) cmd.execute(message, args, client);
+    if (cmd) return cmd.execute(message, args, client);
+    else cmd = await client.aliases.get(command)
+    if (cmd) return cmd.execute(message, args, client);
 }
 module.exports = {
   mold,
