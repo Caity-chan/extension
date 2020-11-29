@@ -18,7 +18,7 @@ const cmdInit = (client, path) => {
     client.commands = new Discord.Collection();
     client.aliases = new Discord.Collection();
     client.categories = [];
-    client.catcmds = new Discord.Collection();
+    client.catcmds = [];
     const commandFolders = fs.readdirSync(path);
 
     let commandlist = ['']
@@ -31,9 +31,9 @@ const cmdInit = (client, path) => {
             client.commands.set(commander.name, commander);
             if (!client.categories.includes(folder)) {
                 client.categories.push(folder);
-                client.catcmds.[folder] = [];
+                client.catcmds[folder] = [];
             }
-            client.catcmds.[folder].push(commander);
+            client.catcmds[folder].push(commander);
             if (commander.aliases) {
                 for (const aly of commander.aliases) {
                     client.aliases.set(aly, commander);
