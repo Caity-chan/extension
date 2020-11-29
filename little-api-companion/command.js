@@ -29,8 +29,11 @@ const cmdInit = (client, path) => {
         for (const file of commandFiles) {
             const commander = require(`${process.cwd()}/${path}/${folder}/${file}`);
             client.commands.set(commander.name, commander);
-            if (!client.categories.includes(folder)) client.categories.push(folder);
-            client.catcmds.push(folder, commander);
+            if (!client.categories.includes(folder)) {
+                client.categories.push(folder);
+                client.catcmds.[folder] = [];
+            }
+            client.catcmds.[folder].push(commander);
             if (commander.aliases) {
                 for (const aly of commander.aliases) {
                     client.aliases.set(aly, commander);
