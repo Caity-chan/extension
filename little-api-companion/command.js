@@ -56,7 +56,7 @@ const evInit = (client, path) => {
         });
     })
 }
-const execmd = (command, message, args, client) => {
+const async execmd = (command, message, args, client) => {
     let cmd = client.commands.get(command)
     if (cmd) return cmd.execute(message, args, client);
     else cmd = await client.aliases.get(command)
