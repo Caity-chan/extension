@@ -57,6 +57,7 @@ const evInit = (client, path) => {
     for (const eventFolder of eventFolders) {
         const eventFiles = fs.readdirSync(`${path}/${eventFolder}/`).filter(file => file.endsWith('.js'));
         for (const file of eventFiles) {
+            delete require.cache[require.resolve(`${process.cwd()}/${path}/${eventFolder}/${file}`)];
             const eventer = require(`${process.cwd()}/${path}/${eventFolder}/${file}`);
             client.events.set(eventer.name, eventer);
         }
