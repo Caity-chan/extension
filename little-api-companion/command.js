@@ -53,6 +53,7 @@ const cmdInit = (client, path) => {
 const evInit = (client, path) => {
     
     client.events = new Discord.Collection();
+    client.initializedEvs = new Discord.Collection();
     const eventFolders = fs.readdirSync(path);
     for (const eventFolder of eventFolders) {
         const eventFiles = fs.readdirSync(`${path}/${eventFolder}/`).filter(file => file.endsWith('.js'));
@@ -64,11 +65,18 @@ const evInit = (client, path) => {
         
         
     }
+    if (!index.name) {
+        
+    }
     client.events.forEach(function(index) {
-        client.on(index.name, (event) => {
-            if (index.name != "message") console.log(index.name, event);
-            client.events.get(index.name).eventexec(client, event);
-        });
+        check = client.initializedEvs.get(index.name);
+        if (!check === true) {
+            client.on(index.name, (event) => {
+                if (index.name != "message") console.log(index.name, event);
+                client.events.get(index.name).eventexec(client, event);
+                client.initializedEvs.set(index.name, true);
+            });
+        }
     })
 }
 const execmd = (command, message, args, client) => {
