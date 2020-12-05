@@ -28,7 +28,9 @@ const cmdInit = (client, path) => {
 
 
         for (const file of commandFiles) {
+            delete require.cache[require.resolve(`${process.cwd()}/${path}/${folder}/${file}`)];
             const commander = require(`${process.cwd()}/${path}/${folder}/${file}`);
+            
             client.commands.set(commander.name, commander);
             if (!client.categories.includes(folder)) {
                 client.categories.push(folder);
