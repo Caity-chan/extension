@@ -65,9 +65,7 @@ const evInit = (client, path) => {
         
         
     }
-    if (!index.name) {
-        
-    }
+
     client.events.forEach(function(index) {
         check = client.initializedEvs.get(index.name);
         if (!check === true) {
